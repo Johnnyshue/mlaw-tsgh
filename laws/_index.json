@@ -1,0 +1,146 @@
+[
+  {
+    "pcode": "L0020021",
+    "name": "醫療法",
+    "tag": "核心",
+    "article_count": 129,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020021",
+    "file": "L0020021.json"
+  },
+  {
+    "pcode": "L0020001",
+    "name": "醫師法",
+    "tag": "核心",
+    "article_count": 69,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020001",
+    "file": "L0020001.json"
+  },
+  {
+    "pcode": "L0020023",
+    "name": "醫療法施行細則",
+    "tag": "核心",
+    "article_count": 71,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020023",
+    "file": "L0020023.json"
+  },
+  {
+    "pcode": "L0020227",
+    "name": "醫療事故預防及爭議處理法",
+    "tag": "核心",
+    "article_count": 45,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020227",
+    "file": "L0020227.json"
+  },
+  {
+    "pcode": "L0020189",
+    "name": "病人自主權利法",
+    "tag": "核心",
+    "article_count": 19,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020189",
+    "file": "L0020189.json"
+  },
+  {
+    "pcode": "L0020066",
+    "name": "安寧緩和醫療條例",
+    "tag": "核心",
+    "article_count": 16,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020066",
+    "file": "L0020066.json"
+  },
+  {
+    "pcode": "L0020045",
+    "name": "緊急醫療救護法",
+    "tag": "核心",
+    "article_count": 60,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020045",
+    "file": "L0020045.json"
+  },
+  {
+    "pcode": "L0020166",
+    "name": "護理人員法",
+    "tag": "醫事",
+    "article_count": 71,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020166",
+    "file": "L0020166.json"
+  },
+  {
+    "pcode": "C0000001",
+    "name": "中華民國刑法",
+    "tag": "刑事",
+    "article_count": 422,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=C0000001",
+    "file": "C0000001.json"
+  },
+  {
+    "pcode": "B0000001",
+    "name": "民法",
+    "tag": "民事",
+    "article_count": 1439,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001",
+    "file": "B0000001.json"
+  },
+  {
+    "pcode": "I0050021",
+    "name": "個人資料保護法",
+    "tag": "資訊",
+    "article_count": 66,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021",
+    "file": "I0050021.json"
+  },
+  {
+    "pcode": "L0020176",
+    "name": "人體研究法",
+    "tag": "研究",
+    "article_count": 26,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020176",
+    "file": "L0020176.json"
+  },
+  {
+    "pcode": "L0020024",
+    "name": "人體器官移植條例",
+    "tag": "特殊",
+    "article_count": 31,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020024",
+    "file": "L0020024.json"
+  },
+  {
+    "pcode": "L0020030",
+    "name": "精神衛生法",
+    "tag": "特殊",
+    "article_count": 91,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020030",
+    "file": "L0020030.json"
+  },
+  {
+    "pcode": "L0050001",
+    "name": "傳染病防治法",
+    "tag": "公衛",
+    "article_count": 81,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0050001",
+    "file": "L0050001.json"
+  },
+  {
+    "pcode": "L0060001",
+    "name": "全民健康保險法",
+    "tag": "健保",
+    "article_count": 106,
+    "date": "",
+    "source": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0060001",
+    "file": "L0060001.json"
+  }
+]

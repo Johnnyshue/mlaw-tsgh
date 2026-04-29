@@ -1,0 +1,13 @@
+{
+  "items": [
+    {"title":"全國法規資料庫", "url":"https://law.moj.gov.tw"},
+    {"title":"司法院裁判書系統", "url":"https://judgment.judicial.gov.tw"},
+    {"title":"衛福部醫事司", "url":"https://dep.mohw.gov.tw/doma/np-128-106.html"},
+    {"title":"醫改會 醫療爭議統計", "url":"https://www.thrf.org.tw/dispute"},
+    {"title":"醫改會 處理參考手冊", "url":"https://www.thrf.org.tw/medicaldisputes/380"},
+    {"title":"中華民國醫師公會", "url":"https://www.tma.tw"},
+    {"title":"醫療事故預防及爭議處理法", "url":"https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020227"},
+    {"title":"病人自主權利法", "url":"https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020189"},
+    {"title":"醫療法（含 §82）", "url":"https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020021"}
+  ]
+}

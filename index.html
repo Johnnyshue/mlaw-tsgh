@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>醫療法律自學｜徐嘉佑</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/core.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css">
+</head>
+<body>
+  <button id="menu-toggle" aria-label="選單">☰</button>
+  <div id="sidebar-overlay"></div>
+
+  <aside id="sidebar">
+    <header>
+      <h1>⚖️ 醫療法律自學</h1>
+      <p class="subtitle">徐嘉佑｜TSGH PGY｜法官視角</p>
+      <p class="tagline">不想當愛心醫生還被告</p>
+    </header>
+
+    <nav>
+      <div class="nav-section">
+        <div class="nav-title">📘 基礎課程</div>
+        <ul id="chapter-list"></ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">🏛️ 法官視角案例</div>
+        <ul id="case-list">
+          <li class="loading">載入中…</li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">🔬 互動工具</div>
+        <ul>
+          <li><a href="#laws" data-route="laws">📜 法條速查</a></li>
+          <li><a href="#dosdonts" data-route="dosdonts">🚦 DO/DON'T 卡片</a></li>
+          <li><a href="#quiz" data-route="quiz">🎯 法律情境 Quiz</a></li>
+          <li><a href="#consent" data-route="consent">📝 知情同意檢查</a></li>
+          <li><a href="#radar" data-route="radar">📡 雷區雷達（高風險科別）</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">📰 延伸資源</div>
+        <ul id="extra-list">
+          <li class="loading">載入中…</li>
+        </ul>
+      </div>
+    </nav>
+
+    <footer>
+      <small>更新：<span id="update-date">—</span></small>
+      <small><a href="#about" data-route="about">關於</a></small>
+      <small class="warn">⚠️ 學習用，不構成法律意見</small>
+    </footer>
+  </aside>
+
+  <main id="content">
+    <div class="loader">載入中…</div>
+  </main>
+
+  <script src="assets/modules/_common.js"></script>
+  <script src="assets/modules/laws.js"></script>
+  <script src="assets/modules/dosdonts.js"></script>
+  <script src="assets/modules/quiz.js"></script>
+  <script src="assets/modules/consent.js"></script>
+  <script src="assets/modules/radar.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
