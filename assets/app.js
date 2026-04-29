@@ -137,20 +137,19 @@ async function init() {
   // 更新日期
   document.getElementById('update-date').textContent = new Date().toISOString().slice(0,10);
 
-  // 分享連結按鈕
+  // 分享連結按鈕（直接複製目前頁面 URL）
   const $share = document.getElementById('share-btn');
-  if ($share && window.MLAW_SHARE_URL) {
+  if ($share) {
     $share.addEventListener('click', async () => {
-      const url = window.MLAW_SHARE_URL;
+      const url = `${location.origin}${location.pathname}`;
       try {
         await navigator.clipboard.writeText(url);
         const orig = $share.textContent;
-        $share.textContent = '✅ 已複製，貼到對話框';
+        $share.textContent = '✅ 已複製';
         $share.classList.add('copied');
-        setTimeout(()=>{ $share.textContent = orig; $share.classList.remove('copied'); }, 2500);
+        setTimeout(()=>{ $share.textContent = orig; $share.classList.remove('copied'); }, 2000);
       } catch (e) {
-        // 後備：用 prompt
-        prompt('複製這個連結分享給朋友：', url);
+        prompt('複製這個連結分享：', url);
       }
     });
   }
