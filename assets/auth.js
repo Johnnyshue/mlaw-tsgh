@@ -1,8 +1,12 @@
 // URL 即鑰匙（像 Google Drive 分享連結）
 // 完整連結帶 #k=<token>，token 對才解鎖；解鎖後存 localStorage，下次直開短網址即可
-// 換 token：改 TOKEN_HASH（用 https://emn178.github.io/online-tools/sha256.html 算 SHA256）
+// 換 token：改 SHARE_TOKEN，自動算 SHA256
+const SHARE_TOKEN = "0JOMRjWBQULYG-6s9dyBgx_azSa7kw02";
 const TOKEN_HASH = "3720fffb0a6948fa695c4489c68c4460aaea4928b2233bd3bea6e6d8896d03c7";
 const STORAGE_KEY = "mlaw_authed_v2";
+
+// 暴露給「分享連結」按鈕用
+window.MLAW_SHARE_URL = `${location.origin}${location.pathname}#k=${SHARE_TOKEN}`;
 
 async function sha256Hex(s) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
@@ -61,8 +65,10 @@ function buildLockedScreen() {
     if (h === TOKEN_HASH) {
       localStorage.setItem(STORAGE_KEY, "1");
       // 清掉 URL 上的 token（避免被截圖、紀錄、瀏覽歷史外洩）
+      // 同時要清 search 與 hash，否則 hash=#k=... 會被 SPA 當成 chapter id
       try {
-        const cleanUrl = location.pathname + location.search.replace(/[?&]k=[^&]+/, "");
+        const cleanSearch = location.search.replace(/[?&]k=[^&]+/, "");
+        const cleanUrl = location.pathname + cleanSearch + "#";
         history.replaceState(null, "", cleanUrl);
       } catch (e) { /* 忽略 */ }
       return;

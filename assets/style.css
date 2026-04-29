@@ -35,34 +35,42 @@ a:hover{text-decoration:underline}
   width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);
   display:flex;flex-direction:column;height:100vh;overflow-y:auto;
 }
-#sidebar header{padding:18px 16px;border-bottom:1px solid var(--border)}
-#sidebar h1{margin:0;font-size:20px;letter-spacing:.5px}
-#sidebar .subtitle{margin:4px 0 0;font-size:12px;color:var(--fg-2)}
+#sidebar header{padding:14px 16px 12px;border-bottom:1px solid var(--border)}
+#sidebar h1{margin:0;font-size:18px;letter-spacing:.3px}
+#sidebar .subtitle{margin:3px 0 0;font-size:11px;color:var(--fg-2)}
 #sidebar .tagline{
-  margin:6px 0 0;font-size:11px;color:var(--accent);font-weight:600;
+  margin:5px 0 0;font-size:11px;color:var(--accent);font-weight:600;
 }
-#sidebar nav{flex:1;padding:12px 0}
-.nav-section{margin-bottom:18px}
+#sidebar nav{flex:1;padding:8px 0}
+.nav-section{margin-bottom:12px}
 .nav-title{
-  padding:6px 16px;font-size:12px;color:var(--fg-2);text-transform:uppercase;
-  letter-spacing:1.5px;font-weight:600;
+  padding:4px 14px;font-size:10px;color:var(--fg-2);text-transform:uppercase;
+  letter-spacing:1.2px;font-weight:600;
 }
 #sidebar ul{list-style:none;margin:0;padding:0}
 #sidebar li{margin:0}
-#sidebar li.loading{padding:6px 16px;color:var(--fg-2);font-size:13px}
+#sidebar li.loading{padding:5px 14px;color:var(--fg-2);font-size:12px}
 #sidebar a{
-  display:block;padding:7px 16px;color:var(--fg);font-size:14px;
+  display:block;padding:5px 14px;color:var(--fg);font-size:13px;
   border-left:3px solid transparent;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 #sidebar a:hover{background:var(--panel-2);text-decoration:none}
 #sidebar a.active{
   background:var(--panel-2);border-left-color:var(--accent);color:var(--accent);
 }
 #sidebar footer{
-  padding:12px 16px;border-top:1px solid var(--border);
-  display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--fg-2);
+  padding:12px 14px;border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--fg-2);
 }
 #sidebar footer .warn{color:var(--warn)}
+#share-btn{
+  background:var(--accent);color:#000;border:0;padding:8px 10px;
+  border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;
+  margin-bottom:6px;
+}
+#share-btn:hover{background:#ea580c}
+#share-btn.copied{background:var(--good);color:#fff}
 
 #content{flex:1;padding:32px 48px;max-width:920px;overflow-x:auto}
 .loader{padding:40px;color:var(--fg-2);text-align:center}

@@ -1,15 +1,15 @@
 {
   "chapters": [
-    {"id":"ch00_mindset","title":"Ch0 心法：法官眼中的醫師","emoji":"🧭"},
-    {"id":"ch01_landscape","title":"Ch1 醫療糾紛全景：被告會發生什麼事","emoji":"🗺️"},
-    {"id":"ch02_medical_act","title":"Ch2 醫療法 §82：2018 修法後的醫師護身符","emoji":"🛡️"},
-    {"id":"ch03_criminal","title":"Ch3 業務過失致死罪（刑法 §276 已廢，現行 §276）","emoji":"⚖️"},
-    {"id":"ch04_civil","title":"Ch4 民事責任：契約 vs 侵權 vs 機構連帶","emoji":"💰"},
-    {"id":"ch05_consent","title":"Ch5 知情同意：怎麼簽才不會被翻盤","emoji":"📝"},
-    {"id":"ch06_records","title":"Ch6 病歷：你寫的每個字都是法官的證據","emoji":"📋"},
-    {"id":"ch07_emergency","title":"Ch7 急診：最容易被告的科別","emoji":"🚨"},
-    {"id":"ch08_dispute","title":"Ch8 醫糾發生那一刻：道歉條款與爭議處理法","emoji":"🆘"},
-    {"id":"ch09_dos_donts","title":"Ch9 DO / DON'T 速查：值班最後一道防線","emoji":"🚦"},
-    {"id":"ch_appendix","title":"附錄：常用法條與術語對照","emoji":"📚"}
+    {"id":"ch00_mindset","title":"Ch0 心法","emoji":"🧭"},
+    {"id":"ch01_landscape","title":"Ch1 醫糾全景","emoji":"🗺️"},
+    {"id":"ch02_medical_act","title":"Ch2 §82 護身符","emoji":"🛡️"},
+    {"id":"ch03_criminal","title":"Ch3 刑事過失致死","emoji":"⚖️"},
+    {"id":"ch04_civil","title":"Ch4 民事責任","emoji":"💰"},
+    {"id":"ch05_consent","title":"Ch5 知情同意","emoji":"📝"},
+    {"id":"ch06_records","title":"Ch6 病歷","emoji":"📋"},
+    {"id":"ch07_emergency","title":"Ch7 急診雷區","emoji":"🚨"},
+    {"id":"ch08_dispute","title":"Ch8 醫糾發生","emoji":"🆘"},
+    {"id":"ch09_dos_donts","title":"Ch9 DO/DON'T","emoji":"🚦"},
+    {"id":"ch_appendix","title":"附錄：法條速查","emoji":"📚"}
   ]
 }
