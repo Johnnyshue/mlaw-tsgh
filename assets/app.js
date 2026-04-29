@@ -140,4 +140,5 @@ async function init() {
   await dispatch();
 }
 
-init();
+window.__mlawInit = init;
+if (!window.__mlawWaitAuth) init();
