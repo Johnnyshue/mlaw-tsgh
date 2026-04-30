@@ -18,9 +18,18 @@
       <h1>⚖️ 醫療法律自學</h1>
       <p class="subtitle">徐嘉佑｜TSGH PGY｜法官視角</p>
       <p class="tagline">不想當愛心醫生還被告</p>
+      <div class="header-tools">
+        <a href="#search" class="ht-btn" title="全站搜尋">🔍</a>
+        <button id="theme-toggle" class="ht-btn" title="切換深/淺色">🌙</button>
+      </div>
     </header>
 
     <nav>
+      <div class="nav-section" id="recent-section" style="display:none">
+        <div class="nav-title">🕒 最近瀏覽</div>
+        <ul id="recent-list"></ul>
+      </div>
+
       <div class="nav-section">
         <div class="nav-title">📘 基礎課程</div>
         <ul id="chapter-list"></ul>
@@ -43,6 +52,9 @@
           <li><a href="#radar" data-route="radar">📡 雷區雷達（高風險科別）</a></li>
           <li><a href="#dialogues" data-route="dialogues">💬 值班危險對話</a></li>
           <li><a href="#decision" data-route="decision">⚡ 30 秒決策樹</a></li>
+          <li><a href="#chart-check" data-route="chart-check">📝 病歷檢查器</a></li>
+          <li><a href="#consent-gen" data-route="consent-gen">📋 同意書產生器</a></li>
+          <li><a href="#search" data-route="search">🔍 全站搜尋</a></li>
         </ul>
       </div>
 
@@ -74,6 +86,9 @@
   <script src="assets/modules/radar.js?v=3"></script>
   <script src="assets/modules/dialogues.js?v=3"></script>
   <script src="assets/modules/decision.js?v=3"></script>
-  <script src="assets/app.js?v=5"></script>
+  <script src="assets/modules/search.js?v=3"></script>
+  <script src="assets/modules/chart_check.js?v=3"></script>
+  <script src="assets/modules/consent_gen.js?v=3"></script>
+  <script src="assets/app.js?v=6"></script>
 </body>
 </html>

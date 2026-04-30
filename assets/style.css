@@ -11,6 +11,19 @@
   --bad:#ef4444;
   --warn:#facc15;
 }
+[data-theme="light"]{
+  --bg:#fafbfc;
+  --panel:#ffffff;
+  --panel-2:#f3f4f6;
+  --border:#d1d5db;
+  --fg:#111827;
+  --fg-2:#6b7280;
+  --accent:#ea580c;
+  --accent-2:#1d4ed8;
+  --good:#15803d;
+  --bad:#b91c1c;
+  --warn:#a16207;
+}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;height:100%}
 body{
@@ -35,12 +48,20 @@ a:hover{text-decoration:underline}
   width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);
   display:flex;flex-direction:column;height:100vh;overflow-y:auto;
 }
-#sidebar header{padding:14px 16px 12px;border-bottom:1px solid var(--border)}
+#sidebar header{padding:14px 16px 12px;border-bottom:1px solid var(--border);position:relative}
 #sidebar h1{margin:0;font-size:18px;letter-spacing:.3px}
 #sidebar .subtitle{margin:3px 0 0;font-size:11px;color:var(--fg-2)}
 #sidebar .tagline{
   margin:5px 0 0;font-size:11px;color:var(--accent);font-weight:600;
 }
+.header-tools{display:flex;gap:6px;margin-top:8px}
+.ht-btn{
+  background:var(--panel-2);border:1px solid var(--border);color:var(--fg);
+  width:32px;height:32px;border-radius:6px;font-size:14px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;
+}
+.ht-btn:hover{border-color:var(--accent);text-decoration:none}
 #sidebar nav{flex:1;padding:8px 0}
 .nav-section{margin-bottom:12px}
 .nav-title{

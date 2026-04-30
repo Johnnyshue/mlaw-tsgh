@@ -172,28 +172,82 @@ const QUIZ = [
   }
 ];
 
+const QUIZ_KEY = 'mlaw_quiz_progress_v1';
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(QUIZ_KEY) || '{}'); }
+  catch(e) { return {}; }
+}
+function saveProgress(p) { localStorage.setItem(QUIZ_KEY, JSON.stringify(p)); }
+
 async function renderQuiz($el) {
+  const progress = loadProgress();
+  const wrongIds = Object.keys(progress).filter(k => progress[k] === 'wrong');
+
   $el.innerHTML = `
     <h1>🎯 法律情境 Quiz</h1>
     <p>${QUIZ.length} 道題目，每題挑戰你的法律直覺。每題後會解釋法源。</p>
+    <div class="quiz-controls" style="display:flex;gap:8px;margin:12px 0;align-items:center">
+      <button id="quiz-mode-all" class="active">全部題目</button>
+      <button id="quiz-mode-wrong" ${wrongIds.length ? '' : 'disabled'}>只看錯題（${wrongIds.length}）</button>
+      <button id="quiz-mode-unseen">只看沒做過</button>
+      <button id="quiz-reset" style="margin-left:auto">🗑️ 重置記分</button>
+    </div>
+    <div id="quiz-stats"></div>
     <div id="quiz-list"></div>
     <div id="quiz-score" style="margin-top:20px;font-size:16px;color:var(--accent);"></div>
   `;
   const $list = document.getElementById('quiz-list');
-  let answered = 0, correct = 0;
-  QUIZ.forEach((q, i) => {
-    const wrap = document.createElement('div');
-    wrap.className = 'quiz-q';
-    wrap.innerHTML = `
-      <div class="scenario"><b>Q${i+1}.</b> ${MLAW.escape(q.scenario)}</div>
-      <div class="quiz-options">
-        ${q.options.map((o, j) => `<button data-i="${i}" data-j="${j}">${MLAW.escape(o.text)}</button>`).join('')}
+  const $stats = document.getElementById('quiz-stats');
+
+  let mode = 'all';
+
+  function showStats() {
+    const p = loadProgress();
+    const done = Object.keys(p).length;
+    const correct = Object.values(p).filter(v => v === 'correct').length;
+    const wrong = Object.values(p).filter(v => v === 'wrong').length;
+    const pct = done ? Math.round(correct / done * 100) : 0;
+    $stats.innerHTML = `
+      <div style="background:var(--panel-2);padding:10px 14px;border-radius:6px;font-size:13px">
+        📊 已做：${done}/${QUIZ.length}　✅ 正確：${correct}　❌ 錯：${wrong}
+        ${done ? `正確率：${pct}%` : ''}
       </div>
-      <div class="quiz-explain" id="exp-${i}"></div>
-      <div style="font-size:11px;color:var(--fg-2);margin-top:8px">📚 ${MLAW.escape(q.src)}</div>
     `;
-    $list.appendChild(wrap);
-  });
+  }
+
+  function renderQuestions() {
+    const p = loadProgress();
+    let questions;
+    if (mode === 'wrong') {
+      questions = QUIZ.map((q, i) => ({q, i})).filter(({i}) => p[i] === 'wrong');
+    } else if (mode === 'unseen') {
+      questions = QUIZ.map((q, i) => ({q, i})).filter(({i}) => !p[i]);
+    } else {
+      questions = QUIZ.map((q, i) => ({q, i}));
+    }
+
+    if (!questions.length) {
+      $list.innerHTML = `<p style="color:var(--fg-2);padding:20px;text-align:center">${mode==='wrong'?'目前沒有錯題':'你已完成全部題目'}</p>`;
+      return;
+    }
+
+    $list.innerHTML = '';
+    questions.forEach(({q, i}) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'quiz-q';
+      const past = p[i];
+      wrap.innerHTML = `
+        <div class="scenario"><b>Q${i+1}.</b> ${MLAW.escape(q.scenario)} ${past?`<span style="font-size:11px;color:${past==='correct'?'var(--good)':'var(--bad)'};margin-left:6px">${past==='correct'?'✓ 之前答對':'✗ 之前答錯'}</span>`:''}</div>
+        <div class="quiz-options">
+          ${q.options.map((o, j) => `<button data-i="${i}" data-j="${j}">${MLAW.escape(o.text)}</button>`).join('')}
+        </div>
+        <div class="quiz-explain" id="exp-${i}"></div>
+        <div style="font-size:11px;color:var(--fg-2);margin-top:8px">📚 ${MLAW.escape(q.src)}</div>
+      `;
+      $list.appendChild(wrap);
+    });
+  }
+
   $list.addEventListener('click', e => {
     const btn = e.target.closest('button[data-i]');
     if (!btn) return;
@@ -201,7 +255,7 @@ async function renderQuiz($el) {
     const q = QUIZ[i];
     const opt = q.options[j];
     const $exp = document.getElementById(`exp-${i}`);
-    if ($exp.classList.contains('show')) return; // 已答
+    if ($exp.classList.contains('show')) return;
     btn.parentElement.querySelectorAll('button').forEach(b=>{
       const oj = +b.dataset.j;
       b.classList.add(q.options[oj].ok ? 'correct' : 'wrong');
@@ -209,10 +263,53 @@ async function renderQuiz($el) {
     });
     $exp.innerHTML = `<b>${opt.ok?'✅ 正確':'❌ 不對'}</b> — ${MLAW.escape(opt.why)}`;
     $exp.classList.add('show');
-    answered++;
-    if (opt.ok) correct++;
-    document.getElementById('quiz-score').textContent =
-      `已答：${answered}/${QUIZ.length}　正確：${correct}　正確率：${Math.round(correct/answered*100)}%`;
+    const p = loadProgress();
+    p[i] = opt.ok ? 'correct' : 'wrong';
+    saveProgress(p);
+    showStats();
   });
+
+  document.getElementById('quiz-mode-all').addEventListener('click', () => {
+    mode = 'all';
+    document.querySelectorAll('.quiz-controls button').forEach(b=>b.classList.remove('active'));
+    document.getElementById('quiz-mode-all').classList.add('active');
+    renderQuestions();
+  });
+  document.getElementById('quiz-mode-wrong').addEventListener('click', () => {
+    mode = 'wrong';
+    document.querySelectorAll('.quiz-controls button').forEach(b=>b.classList.remove('active'));
+    document.getElementById('quiz-mode-wrong').classList.add('active');
+    renderQuestions();
+  });
+  document.getElementById('quiz-mode-unseen').addEventListener('click', () => {
+    mode = 'unseen';
+    document.querySelectorAll('.quiz-controls button').forEach(b=>b.classList.remove('active'));
+    document.getElementById('quiz-mode-unseen').classList.add('active');
+    renderQuestions();
+  });
+  document.getElementById('quiz-reset').addEventListener('click', () => {
+    if (confirm('確定要清除所有 quiz 記分？')) {
+      localStorage.removeItem(QUIZ_KEY);
+      showStats();
+      renderQuestions();
+    }
+  });
+
+  if (!document.getElementById('quiz-ctrl-style')) {
+    const s = document.createElement('style');
+    s.id = 'quiz-ctrl-style';
+    s.textContent = `
+      .quiz-controls button{
+        background:var(--panel-2);border:1px solid var(--border);color:var(--fg);
+        padding:6px 12px;border-radius:14px;font-size:12px;cursor:pointer;
+      }
+      .quiz-controls button.active{background:var(--accent);color:#000;border-color:var(--accent)}
+      .quiz-controls button:disabled{opacity:.5;cursor:not-allowed}
+    `;
+    document.head.appendChild(s);
+  }
+
+  showStats();
+  renderQuestions();
 }
 registerRoute('quiz', renderQuiz);

@@ -2,6 +2,50 @@
 // routes 與 registerRoute 已在 _common.js 預先建立
 const routes = window.__routes__;
 
+// ===== 主題切換 =====
+const THEME_KEY = 'mlaw_theme';
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  const btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = t === 'light' ? '☀️' : '🌙';
+}
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY) || 'dark';
+  applyTheme(saved);
+  const btn = document.getElementById('theme-toggle');
+  if (btn) btn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(THEME_KEY, next);
+    applyTheme(next);
+  });
+}
+
+// ===== 最近瀏覽歷史 =====
+const RECENT_KEY = 'mlaw_recent_v1';
+const RECENT_MAX = 8;
+function getRecent() {
+  try { return JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+function pushRecent(hash, title) {
+  if (!title || hash === 'about' || hash === 'search') return;
+  let list = getRecent().filter(x => x.hash !== hash);
+  list.unshift({hash, title, t: Date.now()});
+  list = list.slice(0, RECENT_MAX);
+  localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+  renderRecent();
+}
+function renderRecent() {
+  const list = getRecent();
+  const $sec = document.getElementById('recent-section');
+  const $list = document.getElementById('recent-list');
+  if (!$sec || !$list) return;
+  if (!list.length) { $sec.style.display = 'none'; return; }
+  $sec.style.display = '';
+  $list.innerHTML = list.map(x => `<li><a href="#${x.hash}">${x.title.length>20?x.title.slice(0,20)+'…':x.title}</a></li>`).join('');
+}
+
 const $content = document.getElementById('content');
 const $sidebar = document.getElementById('sidebar');
 const $overlay = document.getElementById('sidebar-overlay');
@@ -63,10 +107,15 @@ async function dispatch() {
   if (hash === 'about') return renderAbout();
 
   // 互動模組
-  if (routes[hash]) return routes[hash]($content);
+  if (routes[hash]) {
+    await routes[hash]($content);
+    if (link) pushRecent(hash, link.textContent.trim());
+    return;
+  }
 
   // 章節
   await loadChapter(hash);
+  if (link) pushRecent(hash, link.textContent.trim());
   // 自動關閉 mobile 選單
   $sidebar.classList.remove('open');
   $overlay.classList.remove('show');
@@ -136,6 +185,10 @@ async function init() {
 
   // 更新日期
   document.getElementById('update-date').textContent = new Date().toISOString().slice(0,10);
+
+  // 主題與最近瀏覽
+  initTheme();
+  renderRecent();
 
   // 分享連結按鈕（直接複製目前頁面 URL）
   const $share = document.getElementById('share-btn');
